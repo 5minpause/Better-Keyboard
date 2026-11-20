@@ -33,6 +33,12 @@ I used [BetterTouchTool](https://folivora.ai) for exactly this one feature. BTT 
 
 ## Installation
 
+### Download
+
+1. Download the latest `Better-Keyboard-<version>.zip` from [Releases](https://github.com/5minpause/Better-Keyboard/releases/latest).
+2. Unzip it and move **Better Keyboard.app** to `/Applications`.
+3. Open it. The app is signed with a Developer ID and notarized by Apple, so it opens without Gatekeeper warnings.
+
 ### Build from source
 
 1. Clone the repository and open `Better Keyboard.xcodeproj` in Xcode.
@@ -72,6 +78,25 @@ All keys start empty. One way to set them up is by the role an app plays in your
 - Global hotkeys are registered with Carbon's `RegisterEventHotKey`, which only receives the exact keys it registered for and therefore needs no special permissions.
 - Apps are brought forward with `NSWorkspace.openApplication(at:configuration:)` and hidden with `NSRunningApplication.hide()`.
 - The app is not sandboxed, because hiding other apps isn't reliable from inside the App Sandbox. It uses the Hardened Runtime and is meant to be distributed with Developer ID and notarization.
+
+## Releasing
+
+`scripts/release.sh` archives the app, exports it with Developer ID, notarizes and staples it, zips it and publishes a GitHub release tagged `v<MARKETING_VERSION>`.
+
+One-time setup:
+
+```sh
+brew install gh
+gh auth login
+xcrun notarytool store-credentials better-keyboard --apple-id <apple-id> --team-id <team-id>
+```
+
+`notarytool` asks for an [app-specific password](https://account.apple.com). Then bump the version in Xcode and run:
+
+```sh
+scripts/release.sh                 # build, notarize and publish
+scripts/release.sh --skip-publish  # build and notarize only
+```
 
 ## License
 
