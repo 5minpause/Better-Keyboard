@@ -10,13 +10,13 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Section("Tasten") {
+            Section("Keys") {
                 ForEach(FunctionKey.allCases) { key in
                     KeyRow(key: key)
                 }
             }
             Section {
-                Toggle("Beim Login starten", isOn: Binding(get: { launchAtLogin }, set: setLaunchAtLogin))
+                Toggle("Launch at login", isOn: Binding(get: { launchAtLogin }, set: setLaunchAtLogin))
             }
         }
         .formStyle(.grouped)
@@ -61,11 +61,11 @@ private struct KeyRow: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .help("App wählen")
+            .help("Choose app")
 
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundStyle(.yellow)
-                .help("Taste ist bereits von einer anderen App belegt")
+                .help("This key is already used by another app")
                 .opacity(keyMap.failedKeys.contains(key) ? 1 : 0)
 
             Button {
@@ -75,7 +75,7 @@ private struct KeyRow: View {
             }
             .buttonStyle(.borderless)
             .foregroundStyle(.secondary)
-            .help("Zuordnung entfernen")
+            .help("Remove assignment")
             .opacity(keyMap.apps[key] == nil ? 0 : 1)
             .disabled(keyMap.apps[key] == nil)
         }
@@ -100,10 +100,10 @@ private struct KeyRow: View {
         if let url = keyMap.appURL(for: key) {
             Text(url.deletingPathExtension().lastPathComponent)
         } else if let bundleID = keyMap.apps[key] {
-            Text("\(bundleID) (nicht installiert)")
+            Text("\(bundleID) (not installed)")
                 .foregroundStyle(.secondary)
         } else {
-            Text("App wählen…")
+            Text("Choose app…")
                 .foregroundStyle(.tertiary)
         }
     }

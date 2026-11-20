@@ -42,11 +42,30 @@ I used [BetterTouchTool](https://folivora.ai) for exactly this one feature. BTT 
 
 ## Usage
 
-1. Click the keyboard icon in the menu bar and choose **Einstellungen…** (Settings).
+1. Click the keyboard icon in the menu bar and choose **Settings…**.
 2. Click a row to pick the app for that key. Use ✕ to remove a mapping.
-3. Turn on **Beim Login starten** (launch at login) if you want it to start automatically.
+3. Turn on **Launch at login** if you want it to start automatically.
 
 A ⚠️ next to a key means it couldn't be registered because another app or a system shortcut already uses it. Quit the other app (e.g. BetterTouchTool) or free the shortcut, for example F11 for *Show Desktop* under **Keyboard Shortcuts → Mission Control**.
+
+The interface is available in English and German.
+
+### Ideas for a layout
+
+All keys start empty. One way to set them up is by the role an app plays in your day, so the muscle memory stays the same even when you switch tools:
+
+| Key | Role |
+|---|---|
+| F1 | Browser |
+| F2 | Team chat |
+| F3 | Code editor |
+| F4 | Mail |
+| F5 | Terminal |
+| F6 | Notes |
+| F7 | Calendar |
+| F8 | Music |
+| F9 | AI assistant |
+| F10 | Git client |
 
 ## How it works
 

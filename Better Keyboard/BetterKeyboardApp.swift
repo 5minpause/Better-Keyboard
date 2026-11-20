@@ -22,13 +22,13 @@ private struct MenuContent: View {
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
-        Button("Einstellungen…") {
+        Button("Settings…") {
             openWindow(id: SettingsView.windowID)
             NSApp.activate()
         }
         .keyboardShortcut(",")
         Divider()
-        Button("Beenden") {
+        Button("Quit") {
             NSApp.terminate(nil)
         }
         .keyboardShortcut("q")

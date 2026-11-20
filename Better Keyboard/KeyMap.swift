@@ -5,19 +5,7 @@ import Observation
 final class KeyMap {
     private static let defaultsKey = "keyMap"
 
-    private static let initial: [FunctionKey: String] = [
-        .f1: "com.vivaldi.Vivaldi",
-        .f2: "Mattermost.Desktop",
-        .f3: "com.microsoft.VSCode",
-        .f4: "com.microsoft.Outlook",
-        .f5: "com.mitchellh.ghostty",
-        .f6: "md.obsidian",
-        .f7: "com.apple.iCal",
-        .f9: "com.anthropic.claudefordesktop",
-        .f10: "com.DanPristupov.Fork",
-    ]
-
-    private(set) var apps: [FunctionKey: String]
+    private(set) var apps: [FunctionKey: String] = [:]
     private(set) var failedKeys: Set<FunctionKey> = []
 
     init() {
@@ -25,8 +13,6 @@ final class KeyMap {
             apps = Dictionary(uniqueKeysWithValues: stored.compactMap { rawKey, bundleID in
                 Int(rawKey).flatMap(FunctionKey.init(rawValue:)).map { ($0, bundleID) }
             })
-        } else {
-            apps = Self.initial
         }
         registerHotKeys()
     }
